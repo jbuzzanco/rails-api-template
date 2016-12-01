@@ -10,7 +10,11 @@
 
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-quote1 = Quote.create([{  quoteText: 'It is easy to be brave from a safe distance.', author: 'Aesop', user: 'Tuck Everlast' },
+Quote.create([{
+  quoteText: 'It is easy to be brave from a safe distance.',
+  author: 'Aesop',
+  user_id: 2 },
   { quoteText: 'The boundaries of culture and rainfall never follow survey lines.',
-  author: 'J. Frank Dobie',
-  user: 'Tuck Everlast' }])
+    author: 'J. Frank Dobie',
+  user_id: 3
+    }])

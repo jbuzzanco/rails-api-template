@@ -1,5 +1,5 @@
-class QuotesController < ApplicationController
-  before_action :set_quote, only: [:show, :update, :destroy]
+class QuotesController < OpenReadController
+  before_action :set_quote, only: [:update, :destroy]
 
   # GET /quotes
   # GET /quotes.json
@@ -12,16 +12,18 @@ class QuotesController < ApplicationController
   # GET /quotes/1
   # GET /quotes/1.json
   def show
-    render json: @quote
+    render json: Quote.find(params[:id])
   end
 
   # POST /quotes
   # POST /quotes.json
   def create
-    @quote = Quote.new(quote_params)
+    # creates a quote with 'current_user (the validated user)'s "id" as the
+    # quotes "user_id" field.
+    @quote = current_user.quotes.build(quote_params)
 
     if @quote.save
-      render json: @quote, status: :created, location: @quote
+      render json: @quote, status: :created
     else
       render json: @quote.errors, status: :unprocessable_entity
     end
@@ -30,8 +32,6 @@ class QuotesController < ApplicationController
   # PATCH/PUT /quotes/1
   # PATCH/PUT /quotes/1.json
   def update
-    @quote = Quote.find(params[:id])
-
     if @quote.update(quote_params)
       head :no_content
     else
@@ -47,13 +47,13 @@ class QuotesController < ApplicationController
     head :no_content
   end
 
-  private
+  def set_quote
+    @quote = current_user.quotes.find(params[:id])
+  end
 
-    def set_quote
-      @quote = Quote.find(params[:id])
-    end
+  def quote_params
+    params.require(:quote).permit(:quoteText,:authors)
+  end
 
-    def quote_params
-      params.require(:quote).permit(:quoteText, :author, :user)
-    end
+  private :set_quote, :quote_params
 end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class UsersController < ProtectedController
-  skip_before_action :authenticate, only: [:signup, :signin]
+  skip_before_action :authenticate, only: [:signup,:index, :signin]
 
   # POST '/sign-up'
   def signup
