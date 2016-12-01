@@ -7,4 +7,10 @@
 # Examples:
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+quote1 = Quote.create([{  quoteText: 'It is easy to be brave from a safe distance.', author: 'Aesop', user: 'Tuck Everlast' },
+  { quoteText: 'The boundaries of culture and rainfall never follow survey lines.',
+  author: 'J. Frank Dobie',
+  user: 'Tuck Everlast' }])
