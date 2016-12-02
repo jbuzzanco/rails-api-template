@@ -52,7 +52,7 @@ class QuotesController < OpenReadController
   end
 
   def quote_params
-    params.require(:quote).permit(:quoteText,:authors)
+    params.require(:quote).permit(:quoteText,:author)
   end
 
   private :set_quote, :quote_params
