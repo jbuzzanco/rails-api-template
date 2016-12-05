@@ -1,5 +1,9 @@
 class AddUserIdToQuotes < ActiveRecord::Migration
   def change
-    add_column :quotes, :user_id, :integer
+    create_table :quotes do |t|
+      t.string :quoteText
+      t.string :author
+      t.integer :user_id
+    end
   end
 end
